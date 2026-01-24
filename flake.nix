@@ -147,7 +147,7 @@
         ];
 
         time.timeZone = "UTC";
-        networking.hostName = "rpi${config.boot.loader.raspberryPi.variant}-demo";
+        networking.hostName = "rpi${config.boot.loader.raspberry-pi.variant}-demo";
 
         services.udev.extraRules = ''
           # Ignore partitions with "Required Partition" GPT partition attribute
@@ -173,7 +173,7 @@
 
 
         system.nixos.tags = let
-          cfg = config.boot.loader.raspberryPi;
+          cfg = config.boot.loader.raspberry-pi;
         in [
           "raspberry-pi-${cfg.variant}"
           cfg.bootloader
@@ -283,8 +283,8 @@
             kernelBundle = pkgs.linuxAndFirmware.v6_6_31;
           in {
             boot = {
-              loader.raspberryPi.firmwarePackage = kernelBundle.raspberrypifw;
-              loader.raspberryPi.bootloader = "kernel";
+              loader.raspberry-pi.firmwarePackage = kernelBundle.raspberrypifw;
+              loader.raspberry-pi.bootloader = "kernel";
               kernelPackages = kernelBundle.linuxPackages_rpi5;
             };
 
