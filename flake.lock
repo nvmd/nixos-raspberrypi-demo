@@ -95,6 +95,61 @@
         "type": "github"
       }
     },
+    "flake-utils": {
+      "inputs": {
+        "systems": "systems"
+      },
+      "locked": {
+        "lastModified": 1731533236,
+        "narHash": "sha256-l0KFg5HjrsfsO/JpG+r7fRrqm12kzFHyUHqHCVpMMbI=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "11707dc2f618dd54ca8739b309ec4fc024de578b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "matrix-bot-haskell": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "matrix-client": "matrix-client",
+        "nixpkgs": "nixpkgs"
+      },
+      "locked": {
+        "lastModified": 1769798018,
+        "narHash": "sha256-7zG5iYlfCtuKuNJxeQO30XTVHoBadl4C+DyxAtncJ7k=",
+        "owner": "nvmd",
+        "repo": "matrix-bot-haskell",
+        "rev": "64b2a57368a3e2474d9ddac92fe820581c1cfbaa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvmd",
+        "ref": "fosdem2026",
+        "repo": "matrix-bot-haskell",
+        "type": "github"
+      }
+    },
+    "matrix-client": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1769793150,
+        "narHash": "sha256-RksHmrbDZUC/r8bCAFqe3xUr5vjTR8yw9etX9jTq+w8=",
+        "owner": "nvmd",
+        "repo": "matrix-client-haskell",
+        "rev": "3e1df1bc92cc91d53cbe5cdf330a3d42f895ae44",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nvmd",
+        "repo": "matrix-client-haskell",
+        "type": "github"
+      }
+    },
     "nix-vm-test": {
       "inputs": {
         "nixpkgs": [
@@ -123,7 +178,7 @@
         "nix-vm-test": "nix-vm-test",
         "nixos-images": "nixos-images",
         "nixos-stable": "nixos-stable",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": "nixpkgs_2",
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
@@ -196,7 +251,7 @@
         "argononed": "argononed",
         "flake-compat": "flake-compat",
         "nixos-images": "nixos-images_2",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": "nixpkgs_3"
       },
       "locked": {
         "lastModified": 1769297295,
@@ -231,6 +286,22 @@
     },
     "nixpkgs": {
       "locked": {
+        "lastModified": 1769527094,
+        "narHash": "sha256-xV20Alb7ZGN7qujnsi5lG1NckSUmpIb05H2Xar73TDc=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "afce96367b2e37fc29afb5543573cd49db3357b7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
         "lastModified": 1749201760,
         "narHash": "sha256-LEZbj+VD/AR/dWL5ns1gMwzMvp4mLlv4WalxmZTKy5Y=",
         "owner": "nixos",
@@ -245,7 +316,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_2": {
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1769296100,
         "narHash": "sha256-T5VGtbz2X+waw2P1dYvLa56osxj3cNZArfa5aRBVT+s=",
@@ -261,7 +332,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_3": {
+    "nixpkgs_4": {
       "locked": {
         "lastModified": 1769018530,
         "narHash": "sha256-MJ27Cy2NtBEV5tsK+YraYr2g851f3Fl1LpNHDzDX15c=",
@@ -280,9 +351,25 @@
     "root": {
       "inputs": {
         "disko": "disko",
+        "matrix-bot-haskell": "matrix-bot-haskell",
         "nixos-anywhere": "nixos-anywhere",
         "nixos-raspberrypi": "nixos-raspberrypi",
-        "nixpkgs": "nixpkgs_3"
+        "nixpkgs": "nixpkgs_4"
+      }
+    },
+    "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
       }
     },
     "treefmt-nix": {

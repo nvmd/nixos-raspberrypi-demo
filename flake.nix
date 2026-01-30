@@ -21,6 +21,9 @@
     nixos-raspberrypi = {
       url = "github:nvmd/nixos-raspberrypi/main";
     };
+    matrix-bot-haskell = {
+      url = "github:nvmd/matrix-bot-haskell/fosdem2026";
+    };
 
     disko = {
       url = "github:nix-community/disko";
@@ -34,7 +37,8 @@
 
   outputs = { self, nixpkgs
             , nixos-raspberrypi, disko
-            , nixos-anywhere, ... }@inputs: let
+            , nixos-anywhere
+            , ... }@inputs: let
     allSystems = nixpkgs.lib.systems.flakeExposed;
     forSystems = systems: f: nixpkgs.lib.genAttrs systems (system: f system);       
   in {
@@ -139,7 +143,9 @@
         };
       };
 
-      common-user-config = {config, pkgs, ... }: {
+      common-user-config = {config, pkgs, lib, ... }: let
+        matrix-bot-haskell = inputs.matrix-bot-haskell.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      in {
         imports = [
           ./modules/nice-looking-console.nix
           users-config-stub
@@ -159,8 +165,30 @@
 
         environment.systemPackages = with pkgs; [
           tree
+          matrix-bot-haskell
         ];
 
+        systemd.services.matrix-bot-haskell = let
+          environmentFile = "/var/lib/matrix-bot-haskell.env";
+        in {
+          enable = true;
+
+          after = [ "network.target" "nss-lookup.target" ];
+          wantedBy = [ "multi-user.target" ];
+
+          serviceConfig = {
+            ExecStart = "${matrix-bot-haskell}/bin/matrix-bot-haskell";
+            DynamicUser = true;
+
+            EnvironmentFile = environmentFile;
+
+            StandardError="journal";
+            StandardOutput="journal";
+
+            Restart = "always";
+            RestartSec = "3";
+          };
+        };
 
         users.users.nixos.openssh.authorizedKeys.keys = [
           # YOUR SSH PUB KEY HERE #
