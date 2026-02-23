@@ -129,16 +129,23 @@
           systemd-resolved.stopIfChanged = false;
         };
 
+        # networking.interfaces."wlan0".useDHCP = true;
+
         # Use iwd instead of wpa_supplicant. It has a user friendly CLI
         networking.wireless.enable = false;
         networking.wireless.iwd = {
           enable = true;
           settings = {
+            General = {
+              EnableNetworkConfiguration = true;
+            };
             Network = {
               EnableIPv6 = true;
               RoutePriorityOffset = 300;
             };
-            Settings.AutoConnect = true;
+            Settings = {
+              AutoConnect = true;
+            };
           };
         };
       };
@@ -166,7 +173,14 @@
         environment.systemPackages = with pkgs; [
           tree
           matrix-bot-haskell
+          htop
         ];
+
+        services.tailscale = {
+          enable = true;
+          extraDaemonFlags = [ "--no-logs-no-support" ];
+          openFirewall = true;
+        };
 
         systemd.services.matrix-bot-haskell = let
           environmentFile = "/var/lib/matrix-bot-haskell.env";
