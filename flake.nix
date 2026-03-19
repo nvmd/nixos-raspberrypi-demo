@@ -298,6 +298,7 @@
           # Further user configuration
           common-user-config
           {
+            boot.loader.raspberry-pi.bootloader = "kernel";
             boot.tmp.useTmpfs = true;
           }
         ];
