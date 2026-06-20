@@ -1,0 +1,29 @@
+name: Build and Push to cachix
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build-raspberrypi-kernels:
+    strategy:
+      # Continue with the remaining packages if one fails
+      fail-fast: false
+
+      matrix:
+        # ~1.5 hours per job—well under the 6-hour per-job time limit.
+        version: ["02", "4", "5"]
+
+    runs-on: ubuntu-24.04-arm
+
+    steps:
+      - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
+      - uses: ./.github/actions/setup-nix-action
+      - uses: cachix/cachix-action@5f2d7c5294214f71b873db4b969586b980625e71 # v17
+        with:
+          name: "${{ secrets.CACHIX_CACHE_NAME }}"
+          # if you chose signing key for write access
+          # signingkey: "${{ secrets.cachix_signing_key }}"
+          # if you chose api tokens for write access or if you have a private cache
+          authtoken: ${{ secrets.cachix_auth_token }}
+      - run: nix --accept-flake-config build .#nixosConfigurations.rpi${{ matrix.version }}.config.system.build.toplevel
