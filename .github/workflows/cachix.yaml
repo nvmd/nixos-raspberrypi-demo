@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-raspberrypi-kernels:
+  build-demo-system:
     strategy:
       # Continue with the remaining packages if one fails
       fail-fast: false
