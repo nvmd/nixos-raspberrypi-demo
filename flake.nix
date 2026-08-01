@@ -48,6 +48,7 @@
           nixpkgs-fmt
           nix-output-monitor
           nixos-anywhere.packages.${system}.default
+          gh
         ];
       };
     });
