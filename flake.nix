@@ -44,7 +44,7 @@
     in {
       default = pkgs.mkShell {
         nativeBuildInputs = with pkgs; [
-          nil # lsp language server for nix
+          nixd # lsp language server for nix
           nixpkgs-fmt
           nix-output-monitor
           nixos-anywhere.packages.${system}.default
