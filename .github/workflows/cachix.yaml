@@ -12,7 +12,7 @@ jobs:
 
       matrix:
         # ~1.5 hours per job—well under the 6-hour per-job time limit.
-        version: ["02", "4", "5"]
+        version: ["02", "4", "5", "5-16k"]
 
     runs-on: ubuntu-24.04-arm
 
