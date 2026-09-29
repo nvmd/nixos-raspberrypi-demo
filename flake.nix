@@ -106,7 +106,7 @@
 
           # Advanced: Use non-default kernel from kernel-firmware bundle
           ({ config, pkgs, lib, ... }: let
-            kernelBundle = pkgs.linuxAndFirmware.v6_6_31;
+            kernelBundle = pkgs.linuxAndFirmware.v6_18_52;
           in {
             boot = {
               loader.raspberry-pi.firmwarePackage = kernelBundle.raspberrypifw;
